@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="loginApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Among Students/Login</title>
+    <link rel="icon" href="log.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            background-image: url('backg.jpg');
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        :root{
+            --gradient-color-bg:linear-gradient(180deg,rgb(30, 1, 247)0%, rgb(8, 135, 160)51%, rgb(13, 178, 175)100%);
+            --gradient-white-bg:linear-gradient(0deg,#fff 0%,#edf4fa 51%,#e5eef7 100%);
+        }
+        .log{
+            text-align: center;
+            background: var(--gradient-white-bg);
+            font-size: 25px;
+        }
+        span{
+            background: var(--gradient-color-bg);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .login-container {
+            position: fixed;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            width: 600px;
+            height: 400px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+            font-size: 25px;
+        }
+        P,a{
+            font-size: 15px;
+        }
+        button ,.submit{
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0;
+            background: var(--gradient-color-bg);
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 25px;
+        }
+        img{
+            height: 500px;
+            margin-right:750px;
+            margin-bottom: 45px;
+        }
+    </style>
+</head>
+<body>
+    <img src="anni.png">
+    <div class="login-container" ng-controller="loginController"><div class="log">
+        <h1><span>Login</span></h1></div>
+        <form ng-submit="login()" method="post" action="http://127.0.0.1:3000"><br>
+            <input type="text" ng-model="username" placeholder="Username" name="username" id="username" required><br>
+            <input type="password" ng-model="password" placeholder="Password" name="loginpassword" id="password" required><br>
+            <P><a href="Forgetpassword.html">Forget password</a> | Don't have account? <a href="SignUp.html">Sign Up</a></P>
+            <button type="submit"><a href="loginprof.html" class="submit">Login</a></button>
+        </form>
+    </div>
+    <script>
+        var app = angular.module('loginApp', []);
+
+       app.controller('loginController', function($scope, $http) {
+    $scope.authenticate = function() {
+        var username = $scope.username;
+        var password = $scope.password;
+
+        $window.location.href = 'http://127.0.0.1:5502/loginprof.html';  
+    };
+});
+;
+    </script>
+</body>
+</html>

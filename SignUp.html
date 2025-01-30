@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="signupApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Among Students/Sign Up</title>
+    <link rel="icon" href="log.png" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            background-image: url('backg.jpg');
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-weight:bolder;
+            font-size: 30px;
+        }
+        :root{
+            --gradient-color-bg:linear-gradient(180deg,rgb(30, 1, 247)0%, rgb(8, 135, 160)51%, rgb(13, 178, 175)100%);
+            --gradient-white-bg:linear-gradient(0deg,#fff 0%,#edf4fa 51%,#e5eef7 100%);
+        }
+        span{
+            background: var(--gradient-color-bg);
+            -webkit-background-clip: text;
+            color: transparent;
+            font-size: 50px;
+            font-family:'Times New Roman', Times, serif;
+        }
+        .input,.input1,.input2{
+            font-size: 18px;
+            border: 1px solid #cccccc;
+        }
+        .input1{
+            width:95%;
+            border: 1px solid #ccc;
+        }
+        .input{
+            width: 28%;
+        }
+        h2{
+            text-align: center;
+            font-size: 3rem;
+        }
+        .form{
+            font-size: 25px;
+            font-weight: 500;
+        }
+        .sign{
+            position: fixed;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            width: 700px;
+            height: 700px; 
+        }
+        .back{
+            background: var(--gradient-white-bg);
+        }
+        .input2{
+            width:30%;
+        }
+        button{
+            font-size: x-large;
+            background: var(--gradient-color-bg);
+            color: white;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        img{
+            height: 500px;
+            margin-right: 990px;
+        }
+    </style>
+</head>
+<body>
+    <img src="an.png">
+   <div ng-controller="SignUpController" class="sign">
+    <div class="back"> <h2><span>Sign Up</span></h2></div>
+        <form ng-submit="submitForm()" class="form" action="http://localhost:3000/sign_up" method="post"><hr>
+            Name : <input type="text" id="name" name="name" placeholder="Full Name" ng-model="name" class="input1" required><br>
+            Username : <input type="text" id="username" name="username" placeholder=" Username" ng-model="username" class="input1" required><br>
+            Email Address: <input type="email" id="email" name="email" placeholder="Email Address" ng-model="email" class="input1" required><br>
+            Phone Number: <input type="tel" id="phone" name="phone" placeholder="Phone Number" ng-model="Phone" class="input" required>
+            DOB : <input type="date" id="dob" name="dob" placeholder="DOB" ng-model="DOB" class="input" required><br>
+            USN : <input type="text" id="usn" name="usn" placeholder="USN" ng-model="USN" class="input" required>
+            Branch : <input type="text" id="branch" name="branch" placeholder="Branch (CSE,ECE,ISE,..)" ng-model="Branch" class="input2" required><br>
+            Password : <input type="password" id="password" name="password" placeholder=" Password" ng-model="password" class="input1" required><br>
+            Confirm Password : <input type="password" placeholder="Confirm Password " ng-model="confirmPassword" class="input1" required><br><br>
+            <button type="submit">Submit</button><br>
+            <a href="login.html">Already have an account.</a>
+        </form>
+        <div ng-if="message">{{ message }}</div>
+    </div>
+
+    <script>
+        var app = angular.module('signupApp', []);
+
+        app.controller('SignUpController', function($scope, $http) {
+            $scope.submitForm = function() {
+                if ($scope.password !== $scope.confirmPassword) {
+                    $scope.message = 'Passwords do not match.';
+                    return;
+                }
+
+                var requestData = {
+                    username: $scope.username,
+                    email: $scope.email,
+                    password: $scope.password
+                };
+
+                $window.location.href = 'http://127.0.0.1:5502/login.html';
+            };
+        });
+    </script>
+</body>
+</html>
